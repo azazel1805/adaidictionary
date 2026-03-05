@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>ADAI DICTIONARY</title>
+
+
+
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+<script src="https://cdn.tailwindcss.com"></script>
+
+<style>
+
+body{
+font-family: 'Inter', sans-serif;
+}
+
+/* input modern */
+
+input{
+border:1px solid #e5e7eb;
+transition:all .2s;
+}
+
+input:focus{
+outline:none;
+border-color:#000;
+box-shadow:0 0 0 2px #f3f4f6;
+}
+
+.hot-fire{
+font-weight:700;
+
+background:linear-gradient(
+45deg,
+#ff0000,
+#ff6a00,
+#ffcc00
+);
+
+-webkit-background-clip:text;
+-webkit-text-fill-color:transparent;
+
+text-shadow:
+0 0 6px rgba(255,80,0,0.6),
+0 0 12px rgba(255,120,0,0.4);
+
+animation:fireGlow 2s infinite alternate;
+}
+
+@keyframes fireGlow{
+
+0%{
+text-shadow:
+0 0 4px rgba(255,80,0,0.6),
+0 0 8px rgba(255,120,0,0.3);
+}
+
+100%{
+text-shadow:
+0 0 10px rgba(255,120,0,0.9),
+0 0 20px rgba(255,200,0,0.6);
+}
+
+}
+
+/* button */
+
+.btn-main{
+background:#111;
+color:white;
+font-weight:500;
+transition:all .2s;
+}
+
+.btn-main:hover{
+background:#000;
+transform:translateY(-1px);
+}
+
+.btn-soft{
+background:#f3f4f6;
+transition:all .2s;
+}
+
+.btn-soft:hover{
+background:#e5e7eb;
+}
+
+.tabBtn{
+padding:6px 12px;
+border-radius:6px;
+font-size:14px;
+background:#d1d2d4;
+cursor:pointer;
+}
+
+.tabBtn:hover{
+background:#252627;
+}
+
+.tabActive{
+background:#111;
+color:white;
+}
+
+
+
+</style>
+
+</head>
+
+<body class="bg-white text-black min-h-screen">
+
+
+<!-- HEADER -->
+
+<header class="border-b py-4 bg-white">
+
+<div class="max-w-5xl mx-auto flex justify-between items-center px-4">
+
+<!-- LOGO -->
+
+<div class="flex items-center gap-3">
+
+<svg
+width="36"
+height="36"
+viewBox="0 0 100 100"
+xmlns="http://www.w3.org/2000/svg">
+
+<rect width="100" height="100" rx="20" fill="black"/>
+
+<defs>
+<radialGradient id="glow-gradient" cx="50%" cy="50%" r="50%">
+<stop offset="0%" stop-color="#e9d5ff"/>
+<stop offset="75%" stop-color="#a78bfa"/>
+<stop offset="100%" stop-color="#7c3aed"/>
+</radialGradient>
+</defs>
+
+<text
+x="50%"
+y="50%"
+dominant-baseline="middle"
+text-anchor="middle"
+font-family="Inter, sans-serif"
+font-size="35"
+font-weight="bold">
+
+<tspan fill="#FFFFFF">ADA</tspan>
+<tspan fill="url(#glow-gradient)" dx="-0.26em">I</tspan>
+
+</text>
+
+</svg>
+
+<h1 class="text-lg font-semibold tracking-tight">
+
+
+
+</h1>
+
+</div>
+
+<nav class="flex gap-6 text-sm">
+
+<button id="navDictionary">Dictionary</button>
+<button id="navQuiz">Quiz</button>
+<button id="navNotebook">Notebook</button>
+
+</nav>
+
+</div>
+
+</header>
+
+<!-- MAIN -->
+
+<main class="max-w-3xl mx-auto px-6 py-10">
+
+<div id="app"></div>
+
+</main>
+
+
+<!-- FOOTER -->
+
+<footer class="border-t mt-20">
+
+<div class="max-w-5xl mx-auto px-6 py-6 text-sm text-gray-500">
+
+Created by HOT
+
+</div>
+
+</footer>
+
+
+<script type="module">
+
+import { dictionary } from "./js/dictionary.js"
+import { notebook } from "./js/notebook.js"
+import { quiz } from "./js/quiz.js"
+
+
+const app = document.getElementById("app")
+
+dictionary(app)
+
+/* navigation */
+
+document
+.getElementById("navDictionary")
+.onclick = () => dictionary(app)
+
+document
+.getElementById("navNotebook")
+.onclick = () => notebook(app)
+
+document
+.getElementById("navQuiz")
+.onclick = () => quiz(app)
+
+
+</script>
+
+</body>
+</html>

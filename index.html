@@ -1,257 +1,461 @@
+```html
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
-    
 
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>ADAI DICTIONARY</title>
+    <title>ADAI DICTIONARY</title>
 
-<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+
+    <!-- PWA -->
     <link rel="manifest" href="/manifest.json">
+    <meta name="theme-color" content="#000000">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-title" content="ADAI Dictionary">
 
-<meta name="theme-color" content="#000000">
+    <!-- Font -->
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet"
+    >
 
-<meta name="mobile-web-app-capable" content="yes">
-<meta name="apple-mobile-web-app-capable" content="yes">
-<meta name="apple-mobile-web-app-status-bar-style" content="black">
-<meta name="apple-mobile-web-app-title" content="ADAI Dictionary">
+    <!-- Tailwind -->
+    <script src="https://cdn.tailwindcss.com"></script>
 
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
 
-<script src="https://cdn.tailwindcss.com"></script>
+        /* =========================
+           GLOBAL
+        ========================= */
 
-<style>
+        body {
+            font-family: "Inter", sans-serif;
+        }
 
-body{
-font-family: 'Inter', sans-serif;
-}
+        /* =========================
+           INPUT
+        ========================= */
 
-/* input modern */
+        input {
+            border: 1px solid #e5e7eb;
+            transition: all 0.2s ease;
+        }
 
-input{
-border:1px solid #e5e7eb;
-transition:all .2s;
-}
+        input:focus {
+            outline: none;
+            border-color: #000;
+            box-shadow: 0 0 0 2px #f3f4f6;
+        }
 
-input:focus{
-outline:none;
-border-color:#000;
-box-shadow:0 0 0 2px #f3f4f6;
-}
+        /* =========================
+           FIRE EFFECT
+        ========================= */
 
-.hot-fire{
-font-weight:700;
+        .hot-fire {
+            font-weight: 700;
 
-background:linear-gradient(
-45deg,
-#ff0000,
-#ff6a00,
-#ffcc00
-);
+            background: linear-gradient(
+                45deg,
+                #ff0000,
+                #ff6a00,
+                #ffcc00
+            );
 
--webkit-background-clip:text;
--webkit-text-fill-color:transparent;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
 
-text-shadow:
-0 0 6px rgba(255,80,0,0.6),
-0 0 12px rgba(255,120,0,0.4);
+            text-shadow:
+                0 0 6px rgba(255, 80, 0, 0.6),
+                0 0 12px rgba(255, 120, 0, 0.4);
 
-animation:fireGlow 2s infinite alternate;
-}
+            animation: fireGlow 2s infinite alternate;
+        }
 
-@keyframes fireGlow{
+        @keyframes fireGlow {
 
-0%{
-text-shadow:
-0 0 4px rgba(255,80,0,0.6),
-0 0 8px rgba(255,120,0,0.3);
-}
+            0% {
+                text-shadow:
+                    0 0 4px rgba(255, 80, 0, 0.6),
+                    0 0 8px rgba(255, 120, 0, 0.3);
+            }
 
-100%{
-text-shadow:
-0 0 10px rgba(255,120,0,0.9),
-0 0 20px rgba(255,200,0,0.6);
-}
+            100% {
+                text-shadow:
+                    0 0 10px rgba(255, 120, 0, 0.9),
+                    0 0 20px rgba(255, 200, 0, 0.6);
+            }
 
-}
+        }
 
-/* button */
+        /* =========================
+           BUTTONS
+        ========================= */
 
-.btn-main{
-background:#111;
-color:white;
-font-weight:500;
-transition:all .2s;
-}
+        .btn-main {
+            background: #111;
+            color: white;
+            font-weight: 500;
+            transition: all 0.2s ease;
+        }
 
-.btn-main:hover{
-background:#000;
-transform:translateY(-1px);
-}
+        .btn-main:hover {
+            background: #000;
+            transform: translateY(-1px);
+        }
 
-.btn-soft{
-background:#f3f4f6;
-transition:all .2s;
-}
+        .btn-soft {
+            background: #f3f4f6;
+            transition: all 0.2s ease;
+        }
 
-.btn-soft:hover{
-background:#e5e7eb;
-}
+        .btn-soft:hover {
+            background: #e5e7eb;
+        }
 
-.tabBtn{
-padding:6px 12px;
-border-radius:6px;
-font-size:14px;
-background:#d1d2d4;
-cursor:pointer;
-}
+        /* =========================
+           TABS
+        ========================= */
 
-.tabBtn:hover{
-background:#252627;
-}
+        .tabBtn {
+            padding: 6px 12px;
+            border-radius: 6px;
+            font-size: 14px;
+            background: #d1d2d4;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
 
-.tabActive{
-background:#111;
-color:white;
-}
+        .tabBtn:hover {
+            background: #252627;
+            color: white;
+        }
 
+        .tabActive {
+            background: #111;
+            color: white;
+        }
 
+        /* =========================
+           NAVIGATION
+        ========================= */
 
-</style>
+        .nav-btn {
+            position: relative;
+            color: #6b7280;
+            transition: color 0.2s ease;
+        }
+
+        .nav-btn:hover {
+            color: #000;
+        }
+
+        /* =========================
+           LOGO
+        ========================= */
+
+        .logo {
+            width: 38px;
+            height: 38px;
+            flex-shrink: 0;
+        }
+
+        /* =========================
+           BUY ME A COFFEE
+        ========================= */
+
+        .coffee-btn {
+            display: inline-block;
+            transition: transform 0.2s ease;
+        }
+
+        .coffee-btn:hover {
+            transform: translateY(-2px);
+        }
+
+        .coffee-btn img {
+            height: 42px;
+            width: auto;
+        }
+
+        /* =========================
+           MOBILE
+        ========================= */
+
+        @media (max-width: 640px) {
+
+            header {
+                padding-top: 12px;
+                padding-bottom: 12px;
+            }
+
+            .header-inner {
+                flex-direction: column;
+                gap: 14px;
+            }
+
+            nav {
+                width: 100%;
+                justify-content: center;
+            }
+
+            .main-content {
+                padding-top: 28px;
+                padding-bottom: 40px;
+            }
+
+        }
+
+    </style>
 
 </head>
 
-<body class="bg-white text-black min-h-screen">
+
+<body class="bg-white text-black min-h-screen flex flex-col">
 
 
-<!-- HEADER -->
+    <!-- =========================
+         HEADER
+    ========================== -->
 
-<header class="border-b py-4 bg-white">
+    <header class="border-b bg-white">
 
-<div class="max-w-5xl mx-auto flex justify-between items-center px-4">
+        <div
+            class="header-inner max-w-5xl mx-auto px-4 py-4 flex justify-between items-center"
+        >
 
-<!-- LOGO -->
+            <!-- LOGO -->
 
-<div class="flex items-center gap-3">
+            <div class="flex items-center gap-3">
 
-<svg
-width="36"
-height="36"
-viewBox="0 0 100 100"
-xmlns="http://www.w3.org/2000/svg">
+                <svg
+                    class="logo"
+                    viewBox="0 0 100 100"
+                    xmlns="http://www.w3.org/2000/svg"
+                    aria-label="ADAI"
+                >
 
-<rect width="100" height="100" rx="20" fill="black"/>
+                    <rect
+                        width="100"
+                        height="100"
+                        rx="20"
+                        fill="black"
+                    />
 
-<defs>
-<radialGradient id="glow-gradient" cx="50%" cy="50%" r="50%">
-<stop offset="0%" stop-color="#e9d5ff"/>
-<stop offset="75%" stop-color="#a78bfa"/>
-<stop offset="100%" stop-color="#7c3aed"/>
-</radialGradient>
-</defs>
+                    <defs>
 
-<text
-x="50%"
-y="50%"
-dominant-baseline="middle"
-text-anchor="middle"
-font-family="Inter, sans-serif"
-font-size="35"
-font-weight="bold">
+                        <radialGradient
+                            id="glow-gradient"
+                            cx="50%"
+                            cy="50%"
+                            r="50%"
+                        >
 
-<tspan fill="#FFFFFF">ADA</tspan>
-<tspan fill="url(#glow-gradient)" dx="-0.26em">I</tspan>
+                            <stop
+                                offset="0%"
+                                stop-color="#e9d5ff"
+                            />
 
-</text>
+                            <stop
+                                offset="75%"
+                                stop-color="#a78bfa"
+                            />
 
-</svg>
+                            <stop
+                                offset="100%"
+                                stop-color="#7c3aed"
+                            />
 
-<h1 class="text-lg font-semibold tracking-tight">
+                        </radialGradient>
 
+                    </defs>
 
+                    <text
+                        x="50%"
+                        y="50%"
+                        dominant-baseline="middle"
+                        text-anchor="middle"
+                        font-family="Inter, sans-serif"
+                        font-size="35"
+                        font-weight="bold"
+                    >
 
-</h1>
+                        <tspan fill="#FFFFFF">ADA</tspan>
 
-</div>
+                        <tspan
+                            fill="url(#glow-gradient)"
+                            dx="-0.26em"
+                        >
+                            I
+                        </tspan>
 
-<nav class="flex gap-6 text-sm">
+                    </text>
 
-<button id="navDictionary">Dictionary</button>
-<button id="navQuiz">Quiz</button>
-<button id="navNotebook">Notebook</button>
+                </svg>
 
-</nav>
-
-</div>
-
-</header>
-
-<!-- MAIN -->
-
-<main class="max-w-3xl mx-auto px-6 py-10">
-
-<div id="app"></div>
-
-</main>
-
-
-<!-- FOOTER -->
-
-<footer class="border-t mt-20">
-
-<div class="max-w-5xl mx-auto px-6 py-6 text-sm text-gray-500">
-
-Created by HOT
-
-</div>
-
-</footer>
+            </div>
 
 
-<script type="module">
+            <!-- NAVIGATION -->
 
-import { dictionary } from "./js/dictionary.js"
-import { notebook } from "./js/notebook.js"
-import { quiz } from "./js/quiz.js"
+            <nav class="flex items-center gap-6 text-sm">
+
+                <button
+                    id="navDictionary"
+                    class="nav-btn"
+                >
+                    Dictionary
+                </button>
+
+                <button
+                    id="navQuiz"
+                    class="nav-btn"
+                >
+                    Quiz
+                </button>
+
+                <button
+                    id="navNotebook"
+                    class="nav-btn"
+                >
+                    Notebook
+                </button>
+
+            </nav>
+
+        </div>
+
+    </header>
 
 
-const app = document.getElementById("app")
+    <!-- =========================
+         MAIN
+    ========================== -->
 
-dictionary(app)
+    <main
+        class="main-content w-full max-w-3xl mx-auto px-5 sm:px-6 py-10 flex-1"
+    >
 
-/* navigation */
+        <div id="app"></div>
 
-document
-.getElementById("navDictionary")
-.onclick = () => dictionary(app)
-
-document
-.getElementById("navNotebook")
-.onclick = () => notebook(app)
-
-document
-.getElementById("navQuiz")
-.onclick = () => quiz(app)
+    </main>
 
 
-</script>
+    <!-- =========================
+         FOOTER
+    ========================== -->
+
+    <footer class="border-t bg-white">
+
+        <div
+            class="max-w-5xl mx-auto px-5 sm:px-6 py-6
+                   flex flex-col sm:flex-row
+                   justify-between items-center
+                   gap-4"
+        >
+
+            <div class="text-sm text-gray-500">
+                Created by HOT
+            </div>
+
+            <a
+                class="coffee-btn"
+                href="https://www.buymeacoffee.com/onurtosuner"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="Buy me a coffee"
+            >
+
+                <img
+                    src="https://img.buymeacoffee.com/button-api/?text=Buy me a coffee&emoji=&slug=onurtosuner&button_colour=FFDD00&font_colour=000000&font_family=Cookie&outline_colour=000000&coffee_colour=ffffff"
+                    alt="Buy me a coffee"
+                >
+
+            </a>
+
+        </div>
+
+    </footer>
+
+
+    <!-- =========================
+         APPLICATION
+    ========================== -->
+
+    <script type="module">
+
+        import { dictionary } from "./js/dictionary.js";
+        import { notebook } from "./js/notebook.js";
+        import { quiz } from "./js/quiz.js";
+
+
+        const app = document.getElementById("app");
+
+
+        // Default page
+        dictionary(app);
+
+
+        // Navigation
+
+        document
+            .getElementById("navDictionary")
+            .onclick = () => dictionary(app);
+
+
+        document
+            .getElementById("navNotebook")
+            .onclick = () => notebook(app);
+
+
+        document
+            .getElementById("navQuiz")
+            .onclick = () => quiz(app);
+
+    </script>
+
+
+    <!-- =========================
+         SERVICE WORKER
+    ========================== -->
 
     <script>
-if ("serviceWorker" in navigator) {
-    window.addEventListener("load", () => {
-        navigator.serviceWorker.register("/sw.js")
-            .then(registration => {
-                console.log("ADAI PWA registered:", registration.scope);
-            })
-            .catch(error => {
-                console.error("PWA registration failed:", error);
+
+        if ("serviceWorker" in navigator) {
+
+            window.addEventListener("load", () => {
+
+                navigator.serviceWorker
+                    .register("/sw.js")
+                    .then(registration => {
+
+                        console.log(
+                            "ADAI PWA registered:",
+                            registration.scope
+                        );
+
+                    })
+                    .catch(error => {
+
+                        console.error(
+                            "PWA registration failed:",
+                            error
+                        );
+
+                    });
+
             });
-    });
-}
-</script>
-<a href="https://www.buymeacoffee.com/onurtosuner"><img src="https://img.buymeacoffee.com/button-api/?text=Buy me a coffee&emoji=&slug=onurtosuner&button_colour=FFDD00&font_colour=000000&font_family=Cookie&outline_colour=000000&coffee_colour=ffffff" /></a>
+
+        }
+
+    </script>
+
+
 </body>
 </html>

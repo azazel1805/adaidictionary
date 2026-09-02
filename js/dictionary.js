@@ -12,6 +12,7 @@ app.innerHTML = `
 id="wordInput"
 placeholder="Enter a word..."
 class="border p-3 rounded w-full"
+onkeydown="if(event.key === 'Enter') searchWord()"
 />
 
 <button
